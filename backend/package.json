@@ -1,0 +1,55 @@
+{
+  "name": "relatim-ai-chat-backend",
+  "version": "1.0.0",
+  "description": "Relatim-style AI messaging app backend",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "migrate": "node database/migrate.js",
+    "seed": "node database/seed.js"
+  },
+  "keywords": [
+    "relatim",
+    "ai",
+    "chat",
+    "messaging",
+    "realtime"
+  ],
+  "author": "Kaviya Priya",
+  "license": "MIT",
+  "dependencies": {
+    "@google/genai": "^1.19.0",
+    "@google/generative-ai": "^0.2.1",
+    "aws-sdk": "^2.1470.0",
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "livekit-server-sdk": "^1.2.7",
+    "mime": "^4.0.7",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.7",
+    "pg": "^8.11.3",
+    "pg-pool": "^3.6.1",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.32.6",
+    "socket.io": "^4.7.5",
+    "speakeasy": "^2.0.0",
+    "uuid": "^9.0.1",
+    "web-push": "^3.6.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

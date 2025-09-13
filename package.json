@@ -1,0 +1,28 @@
+{
+  "name": "relatim-ai-chat-monorepo",
+  "version": "1.0.0",
+  "description": "Relatim AI Chat Application - Full Stack",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd frontend && npm start",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "cd frontend && cp ../.env .env && npm run build",
+    "build:backend": "cd backend && npm install --production",
+    "start": "npm run start:backend",
+    "start:backend": "cd backend && npm start",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "vercel-build": "cp .env frontend/.env && cd frontend && npm install && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

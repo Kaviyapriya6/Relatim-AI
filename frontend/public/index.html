@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#25D366" />
+    <meta name="description" content="Relatim-style AI messaging app with real-time chat and AI assistant" />
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Relatim AI Chat" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Relatim AI Chat" />
+    <meta property="og:description" content="Modern messaging app with AI assistant" />
+    <meta property="og:image" content="%PUBLIC_URL%/logo512.png" />
+    <meta property="og:url" content="https://relatim-ai-chat.vercel.app" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Relatim AI Chat" />
+    <meta name="twitter:description" content="Modern messaging app with AI assistant" />
+    <meta name="twitter:image" content="%PUBLIC_URL%/logo512.png" />
+    
+    <title>Relatim AI Chat</title>
+  </head>
+  <body class="font-inter antialiased">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    
+    <!-- Notification Permission Script -->
+    <script>
+      // Request notification permission on load
+      if ('Notification' in window && 'serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          if (Notification.permission === 'default') {
+            setTimeout(() => {
+              Notification.requestPermission();
+            }, 3000);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

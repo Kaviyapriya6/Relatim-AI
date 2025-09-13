@@ -1,0 +1,19 @@
+{
+  "short_name": "Relatim AI",
+  "name": "Relatim AI Chat",
+  "description": "Modern messaging app with AI assistant and real-time chat",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "./",
+  "display": "standalone",
+  "theme_color": "#25D366",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "scope": "./",
+  "categories": ["social", "productivity", "communication"]
+}
