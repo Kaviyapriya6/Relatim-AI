@@ -17,7 +17,7 @@
     "start": "npm run start:backend",
     "start:backend": "cd backend && npm start",
     "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
-    "vercel-build": "cp .env frontend/.env && cd frontend && npm install && npm run build"
+    "vercel-build": "cd frontend && echo 'REACT_APP_API_URL=/api' > .env && echo 'REACT_APP_SOCKET_URL=/' >> .env && echo 'REACT_APP_NODE_ENV=production' >> .env && echo 'GENERATE_SOURCEMAP=false' >> .env && npm install && npm run build"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
