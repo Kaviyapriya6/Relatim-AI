@@ -1,4 +1,4 @@
-# WhatsApp AI Chat - Full Stack Application
+# Relatim AI Chat - Full Stack Application
 
 A modern WhatsApp-style messaging application with AI integration, built with React and Node.js.
 
@@ -246,5 +246,6 @@ npm update
 ```
 
 ## 📄 License
+
 
 This project is licensed under the MIT License.
