@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 const morgan = require('morgan');
 const path = require('path');
-// Environment variables will be provided by Vercel's built-in system
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 // Import routes
 const authRoutes = require('./routes/auth');
