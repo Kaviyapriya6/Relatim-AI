@@ -127,7 +127,7 @@ const RecentChats = () => {
             <p className="text-gray-400 dark:text-gray-500 text-sm mt-1">Start a conversation to see it here</p>
           </div>
         ) : (
-          recentChats.map((chat, index) => (
+          recentChats.slice(0, 4).map((chat, index) => (
             <motion.div
               key={chat.id}
               initial={{ opacity: 0, y: 10 }}

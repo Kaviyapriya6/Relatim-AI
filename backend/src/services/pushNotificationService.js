@@ -10,9 +10,9 @@ class PushNotificationService {
         process.env.VAPID_PUBLIC_KEY,
         process.env.VAPID_PRIVATE_KEY
       );
-      console.log('✅ Push notification service initialized with VAPID keys');
+      console.log('Push notification service initialized with VAPID keys');
     } else {
-      console.warn('⚠️ VAPID keys not configured. Push notifications will use demo mode.');
+      console.warn('VAPID keys not configured. Push notifications will use demo mode.');
     }
   }
 
@@ -37,7 +37,7 @@ class PushNotificationService {
         subscription.keys.auth
       ]);
 
-      console.log(`📱 User ${userId} subscribed to push notifications`);
+      console.log(`User ${userId} subscribed to push notifications`);
       return { success: true, subscriptionId: result.rows[0].id };
     } catch (error) {
       console.error('Failed to store push subscription:', error);
@@ -52,7 +52,7 @@ class PushNotificationService {
         [userId, endpoint]
       );
 
-      console.log(`📱 User ${userId} unsubscribed from push notifications`);
+      console.log(`User ${userId} unsubscribed from push notifications`);
       return { success: true };
     } catch (error) {
       console.error('Failed to remove push subscription:', error);
@@ -122,7 +122,7 @@ class PushNotificationService {
         }
       }
 
-      console.log(`📤 Push notification sent to user ${userId}: ${successful} successful, ${failed} failed`);
+      console.log(`Push notification sent to user ${userId}: ${successful} successful, ${failed} failed`);
       return { 
         success: successful > 0, 
         successful, 
@@ -280,7 +280,7 @@ class PushNotificationService {
       `;
 
       await db.query(createTableQuery);
-      console.log('✅ Push subscriptions table initialized');
+      console.log('Push subscriptions table initialized');
     } catch (error) {
       console.error('Failed to initialize push subscriptions table:', error);
     }

@@ -88,7 +88,7 @@ Remember: You're having a conversation in a messaging app, so keep your response
         return {
           success: false,
           error: 'AI service configuration error',
-          response: 'Sorry, I\'m having trouble connecting to my AI service. Please try again later. 🤖'
+          response: 'Sorry, I\'m having trouble connecting to my AI service. Please try again later.'
         };
       }
       
@@ -96,7 +96,7 @@ Remember: You're having a conversation in a messaging app, so keep your response
         return {
           success: false,
           error: 'Content safety filter triggered',
-          response: 'I cannot provide a response to that message due to safety guidelines. Please try rephrasing your question. 🛡️'
+          response: 'I cannot provide a response to that message due to safety guidelines. Please try rephrasing your question.'
         };
       }
       
@@ -104,7 +104,7 @@ Remember: You're having a conversation in a messaging app, so keep your response
         return {
           success: false,
           error: 'API quota exceeded',
-          response: 'I\'m currently experiencing high demand. Please try again in a moment. ⏳'
+          response: 'I\'m currently experiencing high demand. Please try again in a moment.'
         };
       }
 
@@ -112,7 +112,7 @@ Remember: You're having a conversation in a messaging app, so keep your response
       if (error.status === 429 || error.message.includes('RATE_LIMIT_EXCEEDED') || error.message.includes('Quota exceeded')) {
         return {
           success: true, // Return success with fallback message
-          response: 'I\'m currently experiencing high demand and my AI service quota is temporarily exceeded. Here\'s a helpful response while I work on getting back online! 🤖\n\nI\'m an AI assistant ready to help you with questions, provide information, have conversations, and assist with various tasks. Feel free to ask me anything and I\'ll do my best to help once my service is restored. Thank you for your patience! ✨',
+          response: 'I\'m currently experiencing high demand and my AI service quota is temporarily exceeded. Here\'s a helpful response while I work on getting back online!\n\nI\'m an AI assistant ready to help you with questions, provide information, have conversations, and assist with various tasks. Feel free to ask me anything and I\'ll do my best to help once my service is restored. Thank you for your patience!',
           fallback: true
         };
       }
@@ -120,7 +120,7 @@ Remember: You're having a conversation in a messaging app, so keep your response
       return {
         success: false,
         error: error.message,
-        response: 'Sorry, I encountered an error while processing your message. Please try again. 😅'
+        response: 'Sorry, I encountered an error while processing your message. Please try again.'
       };
     }
   }

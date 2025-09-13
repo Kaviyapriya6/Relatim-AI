@@ -20,7 +20,7 @@ class EmailService {
       if (error) {
         console.error('Email service configuration error:', error);
       } else {
-        console.log('✅ Email service is ready to send messages');
+        console.log('Email service is ready to send messages');
       }
     });
   }
@@ -36,10 +36,10 @@ class EmailService {
       };
 
       const result = await this.transporter.sendMail(mailOptions);
-      console.log('📧 Email sent successfully:', result.messageId);
+      console.log('Email sent successfully:', result.messageId);
       return { success: true, messageId: result.messageId };
     } catch (error) {
-      console.error('❌ Email sending failed:', error);
+      console.error('Email sending failed:', error);
       throw new Error(`Failed to send email: ${error.message}`);
     }
   }
@@ -52,12 +52,12 @@ class EmailService {
           <h1 style="color: white; margin: 0;">Welcome to Relatim AI Chat!</h1>
         </div>
         <div style="padding: 30px; background: #f8f9fa;">
-          <h2 style="color: #075E54;">Hello ${userName}! 👋</h2>
+          <h2 style="color: #075E54;">Hello ${userName}!</h2>
           <p style="font-size: 16px; line-height: 1.6; color: #333;">
             Welcome to our amazing Relatim-style AI messaging platform! We're excited to have you on board.
           </p>
           <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-            <h3 style="color: #25D366; margin-top: 0;">🚀 Get Started:</h3>
+            <h3 style="color: #25D366; margin-top: 0;">Get Started:</h3>
             <ul style="color: #333; line-height: 1.6;">
               <li>Add contacts and start messaging</li>
               <li>Try our AI chat assistant</li>
@@ -114,7 +114,7 @@ class EmailService {
           <h1 style="color: white; margin: 0;">Password Reset Request</h1>
         </div>
         <div style="padding: 30px; background: #f8f9fa;">
-          <h2 style="color: #075E54;">Hello ${userName}! 🔒</h2>
+          <h2 style="color: #075E54;">Hello ${userName}!</h2>
           <p style="font-size: 16px; line-height: 1.6; color: #333;">
             We received a request to reset your password for your Relatim AI Chat account.
           </p>
@@ -135,7 +135,7 @@ class EmailService {
           </div>
           <div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 6px; margin: 20px 0;">
             <p style="color: #856404; margin: 0; font-size: 14px;">
-              <strong>⚠️ Security Notice:</strong> If you didn't request this password reset, please ignore this email. Your account remains secure.
+              <strong>Security Notice:</strong> If you didn't request this password reset, please ignore this email. Your account remains secure.
             </p>
           </div>
         </div>
@@ -173,7 +173,7 @@ class EmailService {
           <h1 style="color: white; margin: 0;">Verify Your Email</h1>
         </div>
         <div style="padding: 30px; background: #f8f9fa;">
-          <h2 style="color: #075E54;">Hello ${userName}! ✉️</h2>
+          <h2 style="color: #075E54;">Hello ${userName}!</h2>
           <p style="font-size: 16px; line-height: 1.6; color: #333;">
             Thank you for registering with Relatim AI Chat! Please verify your email address to complete your account setup.
           </p>
@@ -225,7 +225,7 @@ class EmailService {
           <h1 style="color: white; margin: 0;">New Login Detected</h1>
         </div>
         <div style="padding: 30px; background: #f8f9fa;">
-          <h2 style="color: #075E54;">Hello ${userName}! 🔐</h2>
+          <h2 style="color: #075E54;">Hello ${userName}!</h2>
           <p style="font-size: 16px; line-height: 1.6; color: #333;">
             We detected a new login to your Relatim AI Chat account.
           </p>
@@ -237,12 +237,12 @@ class EmailService {
           </div>
           <div style="background: #d4edda; border: 1px solid #c3e6cb; padding: 15px; border-radius: 6px; margin: 20px 0;">
             <p style="color: #155724; margin: 0; font-size: 14px;">
-              <strong>✅ Secure:</strong> If this was you, no action is needed.
+              <strong>Secure:</strong> If this was you, no action is needed.
             </p>
           </div>
           <div style="background: #f8d7da; border: 1px solid #f5c6cb; padding: 15px; border-radius: 6px; margin: 20px 0;">
             <p style="color: #721c24; margin: 0; font-size: 14px;">
-              <strong>⚠️ Suspicious Activity:</strong> If this wasn't you, please change your password immediately and contact support.
+              <strong>Suspicious Activity:</strong> If this wasn't you, please change your password immediately and contact support.
             </p>
           </div>
         </div>

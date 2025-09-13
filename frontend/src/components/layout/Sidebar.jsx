@@ -253,14 +253,14 @@ const Sidebar = ({ isOpen, onClose }) => {
               {/* Logout button - Fixed spacing */}
               <button
                 onClick={handleLogout}
-                className="group flex items-center w-full px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-700 dark:hover:text-red-300"
+                className="group flex items-center gap-3 w-full px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-700 dark:hover:text-red-300"
               >
-                <span className="mr-3 flex-shrink-0 transition-colors duration-200 text-gray-500 group-hover:text-red-600 dark:group-hover:text-red-400">
+                <span className="transition-colors duration-200 text-gray-500 group-hover:text-red-600 dark:group-hover:text-red-400">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                   </svg>
                 </span>
-                <span className="flex-1 font-medium">Logout</span>
+                <span className="font-medium">Logout</span>
               </button>
             </div>
           </nav>

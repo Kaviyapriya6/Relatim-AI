@@ -264,23 +264,23 @@ class WhatsAppAIServer {
       
       // Start server
       this.server.listen(this.port, () => {
-        console.log(`🚀 Relatim AI Chat Server running on port ${this.port}`);
-        console.log(`📊 Environment: ${process.env.NODE_ENV}`);
-        console.log(`🔗 Health check: http://localhost:${this.port}/health`);
-        console.log(`📡 API endpoints: http://localhost:${this.port}/api`);
+        console.log(`Relatim AI Chat Server running on port ${this.port}`);
+        console.log(`Environment: ${process.env.NODE_ENV}`);
+        console.log(`Health check: http://localhost:${this.port}/health`);
+        console.log(`API endpoints: http://localhost:${this.port}/api`);
         
         if (process.env.NODE_ENV === 'development') {
-          console.log(`🌐 Frontend URL: ${process.env.FRONTEND_URL}`);
+          console.log(`Frontend URL: ${process.env.FRONTEND_URL}`);
         }
       });
 
       // Socket.IO connection logging
       this.io.on('connection', (socket) => {
-        console.log(`🔌 Socket connected: ${socket.id}`);
+        console.log(`Socket connected: ${socket.id}`);
       });
 
     } catch (error) {
-      console.error('❌ Failed to start server:', error);
+      console.error('Failed to start server:', error);
       process.exit(1);
     }
   }

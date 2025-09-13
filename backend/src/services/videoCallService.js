@@ -7,10 +7,10 @@ class VideoCallService {
     this.wsUrl = process.env.LIVEKIT_WS_URL || 'wss://your-livekit-server.com';
     
     if (!this.apiKey || !this.apiSecret) {
-      console.warn('⚠️ LiveKit credentials not configured. Video calls will use fallback mode.');
+      console.warn('LiveKit credentials not configured. Video calls will use fallback mode.');
     } else {
       this.roomService = new RoomServiceClient(this.wsUrl, this.apiKey, this.apiSecret);
-      console.log('✅ LiveKit video service initialized');
+      console.log('LiveKit video service initialized');
     }
   }
 
@@ -31,7 +31,7 @@ class VideoCallService {
       };
 
       const room = await this.roomService.createRoom(options);
-      console.log(`📹 Created video room: ${roomName}`);
+      console.log(`Created video room: ${roomName}`);
       return room;
     } catch (error) {
       console.error('Failed to create video room:', error);
@@ -67,7 +67,7 @@ class VideoCallService {
 
       const token = at.toJwt();
       
-      console.log(`🎫 Generated access token for ${participantName} in room ${roomName}`);
+      console.log(`Generated access token for ${participantName} in room ${roomName}`);
       
       return {
         token,
@@ -109,12 +109,12 @@ class VideoCallService {
   async deleteRoom(roomName) {
     try {
       if (!this.roomService) {
-        console.log(`🗑️ Simulated deletion of room: ${roomName}`);
+        console.log(`Simulated deletion of room: ${roomName}`);
         return true;
       }
 
       await this.roomService.deleteRoom(roomName);
-      console.log(`🗑️ Deleted video room: ${roomName}`);
+      console.log(`Deleted video room: ${roomName}`);
       return true;
     } catch (error) {
       console.error('Failed to delete room:', error);
@@ -139,12 +139,12 @@ class VideoCallService {
   async removeParticipant(roomName, participantId) {
     try {
       if (!this.roomService) {
-        console.log(`👋 Simulated removal of participant ${participantId} from room ${roomName}`);
+        console.log(`Simulated removal of participant ${participantId} from room ${roomName}`);
         return true;
       }
 
       await this.roomService.removeParticipant(roomName, participantId);
-      console.log(`👋 Removed participant ${participantId} from room ${roomName}`);
+      console.log(`Removed participant ${participantId} from room ${roomName}`);
       return true;
     } catch (error) {
       console.error('Failed to remove participant:', error);
@@ -155,12 +155,12 @@ class VideoCallService {
   async muteParticipant(roomName, participantId, trackType = 'audio') {
     try {
       if (!this.roomService) {
-        console.log(`🔇 Simulated muting of ${trackType} for participant ${participantId} in room ${roomName}`);
+        console.log(`Simulated muting of ${trackType} for participant ${participantId} in room ${roomName}`);
         return true;
       }
 
       await this.roomService.mutePublishedTrack(roomName, participantId, trackType);
-      console.log(`🔇 Muted ${trackType} for participant ${participantId} in room ${roomName}`);
+      console.log(`Muted ${trackType} for participant ${participantId} in room ${roomName}`);
       return true;
     } catch (error) {
       console.error('Failed to mute participant:', error);
@@ -171,13 +171,13 @@ class VideoCallService {
   async sendDataToRoom(roomName, data, kind = 'reliable') {
     try {
       if (!this.roomService) {
-        console.log(`📤 Simulated data send to room ${roomName}:`, data);
+        console.log(`Simulated data send to room ${roomName}:`, data);
         return true;
       }
 
       const uint8Data = new TextEncoder().encode(JSON.stringify(data));
       await this.roomService.sendData(roomName, uint8Data, kind);
-      console.log(`📤 Sent data to room ${roomName}`);
+      console.log(`Sent data to room ${roomName}`);
       return true;
     } catch (error) {
       console.error('Failed to send data to room:', error);
