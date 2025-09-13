@@ -17,7 +17,7 @@ const LoadingScreen = ({ message = 'Loading...', size = 'large' }) => {
           className="relative mb-6"
         >
           {/* Logo */}
-          <div className="w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center mb-4 relative overflow-hidden">
+          <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center mb-4 relative overflow-hidden">
             <motion.div
               animate={{ 
                 scale: [1, 1.1, 1],
@@ -40,7 +40,7 @@ const LoadingScreen = ({ message = 'Loading...', size = 'large' }) => {
             
             {/* Ripple effect */}
             <motion.div
-              className="absolute inset-0 bg-green-500 rounded-2xl"
+              className="absolute inset-0 bg-blue-500 rounded-2xl"
               animate={{ 
                 scale: [1, 1.2, 1],
                 opacity: [0.7, 0.3, 0.7]
@@ -55,7 +55,7 @@ const LoadingScreen = ({ message = 'Loading...', size = 'large' }) => {
 
           {/* Spinning ring */}
           <motion.div
-            className="absolute inset-0 border-4 border-transparent border-t-green-500 rounded-full"
+            className="absolute inset-0 border-4 border-transparent border-t-blue-500 rounded-full"
             animate={{ rotate: 360 }}
             transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
           />
@@ -93,7 +93,7 @@ const LoadingScreen = ({ message = 'Loading...', size = 'large' }) => {
           {[0, 1, 2].map((index) => (
             <motion.div
               key={index}
-              className="w-2 h-2 bg-green-500 rounded-full"
+              className="w-2 h-2 bg-blue-500 rounded-full"
               animate={{ 
                 scale: [1, 1.5, 1],
                 opacity: [0.5, 1, 0.5]
@@ -117,7 +117,7 @@ const LoadingScreen = ({ message = 'Loading...', size = 'large' }) => {
             className="w-64 h-1 bg-gray-200 dark:bg-gray-700 rounded-full mt-6 overflow-hidden"
           >
             <motion.div
-              className="h-full bg-green-500 rounded-full"
+              className="h-full bg-blue-500 rounded-full"
               animate={{ x: ['-100%', '100%'] }}
               transition={{ 
                 duration: 1.5,

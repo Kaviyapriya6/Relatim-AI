@@ -8,7 +8,7 @@ const FloatingActionButton = ({ onClick, icon, className = '', ...props }) => {
       whileTap={{ scale: 0.9 }}
       className={`
         fixed bottom-20 right-6 md:bottom-6 md:right-6 z-40
-        w-14 h-14 bg-green-600 hover:bg-green-700 text-white
+        w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white
         rounded-full shadow-lg hover:shadow-xl
         flex items-center justify-center
         transition-all duration-200

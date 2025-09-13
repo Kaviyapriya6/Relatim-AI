@@ -418,7 +418,7 @@ ${conversationText}`;
               </div>
             </h2>
             <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
               <span className="text-sm text-gray-500 dark:text-gray-400">
                 {aiTyping ? 'AI is thinking...' : 'Always available'}
               </span>
@@ -487,7 +487,7 @@ ${conversationText}`;
                     <div className="flex items-start space-x-3">
                       <span className="text-2xl">{prompt.icon}</span>
                       <div>
-                        <h4 className="font-medium text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400">
+                        <h4 className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
                           {prompt.title}
                         </h4>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
@@ -534,7 +534,7 @@ ${conversationText}`;
                       <div
                         className={`px-4 py-2 rounded-lg ${
                           message.sender === 'user'
-                            ? 'bg-green-500 text-white'
+                            ? 'bg-blue-500 text-white'
                             : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700'
                         }`}
                       >
@@ -543,7 +543,7 @@ ${conversationText}`;
                         </p>
                         
                         <div className={`flex items-center justify-between mt-1 ${
-                          message.sender === 'user' ? 'text-green-100' : 'text-gray-500 dark:text-gray-400'
+                          message.sender === 'user' ? 'text-blue-100' : 'text-gray-500 dark:text-gray-400'
                         }`}>
                           <span className="text-xs">
                             {formatTime(message.timestamp)}
@@ -673,7 +673,7 @@ ${conversationText}`;
               onChange={(e) => setMessageInput(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Ask me anything..."
-              className="w-full max-h-32 p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-green-500 focus:border-green-500 resize-none"
+              className="w-full max-h-32 p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
               rows={1}
               style={{
                 minHeight: '44px',

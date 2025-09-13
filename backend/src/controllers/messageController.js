@@ -155,17 +155,48 @@ class MessageController {
         });
       }
 
-      // Handle file upload from S3
+      // Handle file upload
       let file_url = null;
       let file_type = null;
       let file_name = null;
       let file_size = null;
 
-      if (req.uploadResult) {
-        file_url = req.uploadResult.url;
-        file_type = getFileType(req.uploadResult.originalName);
-        file_name = req.uploadResult.originalName;
-        file_size = req.uploadResult.size;
+      if (req.file) {
+        try {
+          // Optimize image if it's an image file
+          if (req.file.mimetype.startsWith('image/')) {
+            const optimizedPath = path.join(
+              path.dirname(req.file.path),
+              `optimized_${path.basename(req.file.path)}`
+            );
+            
+            await optimizeImage(req.file.path, optimizedPath, {
+              width: 1200,
+              height: 1200,
+              quality: 85
+            });
+
+            file_url = getFileUrl(
+              `uploads/messages/${path.basename(optimizedPath)}`,
+              `${req.protocol}://${req.get('host')}`
+            );
+          } else {
+            file_url = getFileUrl(
+              `uploads/messages/${req.file.filename}`,
+              `${req.protocol}://${req.get('host')}`
+            );
+          }
+
+          file_type = getFileType(req.file.originalname);
+          file_name = req.file.originalname;
+          file_size = req.file.size;
+        } catch (fileError) {
+          console.error('File processing error:', fileError);
+          return res.status(400).json({
+            success: false,
+            message: 'Failed to process uploaded file'
+          });
+        }
       }
 
       // Validate reply message if provided

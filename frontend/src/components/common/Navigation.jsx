@@ -215,7 +215,7 @@ export const DropdownItem = ({
       onClick={onClick}
       disabled={disabled}
       className={`
-        w-full px-4 py-2 text-left text-sm transition-colors
+        w-full px-4 py-3 text-left text-sm transition-colors
         ${disabled 
           ? 'text-gray-400 dark:text-gray-600 cursor-not-allowed' 
           : variants[variant]
@@ -305,7 +305,7 @@ export const TabsTrigger = ({
       className={`
         px-4 py-2 text-sm font-medium transition-colors relative
         ${isActive 
-          ? 'text-green-600 dark:text-green-400' 
+          ? 'text-blue-600 dark:text-blue-400' 
           : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
         }
         ${disabled 
@@ -320,7 +320,7 @@ export const TabsTrigger = ({
       {isActive && (
         <motion.div
           layoutId="activeTab"
-          className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-600 dark:bg-green-400"
+          className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 dark:bg-blue-400"
           transition={{ duration: 0.2 }}
         />
       )}

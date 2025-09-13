@@ -193,7 +193,7 @@ const Contacts = () => {
         {/* Stats */}
         <div className="flex items-center space-x-4 mt-4 text-sm text-gray-600 dark:text-gray-400">
           <span className="flex items-center">
-            <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+            <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
             {onlineContacts.length} online
           </span>
           <span className="flex items-center">
@@ -223,7 +223,7 @@ const Contacts = () => {
             {onlineContacts.length > 0 && (
               <div className="mb-6">
                 <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3 flex items-center">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
                   Online ({onlineContacts.length})
                 </h3>
                 

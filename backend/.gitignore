@@ -54,3 +54,11 @@ build/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Uploads
+uploads/*
+!uploads/.gitkeep
+
+# Database dumps
+*.sql
+*.db

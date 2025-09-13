@@ -13,6 +13,8 @@ import {
   fetchRecentMessages, 
   fetchRecentContacts 
 } from '../store/slices/dashboardSlice';
+import { fetchUserProfile } from '../store/slices/authSlice';
+import { createDisplayName, normalizeUserObject } from '../utils/userUtils';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -42,23 +44,16 @@ const Dashboard = () => {
   
   const [selectedTimeRange, setSelectedTimeRange] = useState('week');
 
-  // Derive user display name consistently
-  const userName = useMemo(() => {
-    if (!user) return 'User';
-    
-    // Handle different possible user object structures
-    const userData = user.user || user; // Handle nested user object
-    
-    if (userData.first_name && userData.last_name) return userData.first_name;
-    if (userData.name) return userData.name.split(' ')[0];
-    if (userData.first_name) return userData.first_name;
-    if (userData.last_name) return userData.last_name;
-    if (userData.email) return userData.email.split('@')[0];
-    if (userData.username) return userData.username;
-    return 'User';
+  // Get normalized user data with proper display name
+  const normalizedUser = useMemo(() => {
+    return user ? normalizeUserObject(user) : null;
   }, [user]);
 
+  const userName = normalizedUser ? createDisplayName(normalizedUser) : 'User';
+
   useEffect(() => {
+    // Ensure fresh user profile data on dashboard load
+    dispatch(fetchUserProfile());
     dispatch(fetchDashboardStats(selectedTimeRange));
     dispatch(fetchRecentMessages({ limit: 5 }));
     dispatch(fetchRecentContacts({ limit: 8 }));
@@ -93,9 +88,9 @@ const Dashboard = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
         </svg>
       ),
-      color: 'text-green-600',
-      bgColor: 'bg-green-50 dark:bg-green-900/30',
-      borderColor: 'border-green-200 dark:border-green-800',
+      color: 'text-blue-600',
+      bgColor: 'bg-blue-50 dark:bg-blue-900/30',
+      borderColor: 'border-blue-200 dark:border-blue-800',
     },
     {
       title: 'Active Contacts',
@@ -144,7 +139,7 @@ const Dashboard = () => {
     if (change === 0) return null;
     const isPositive = change > 0;
     return (
-      <span className={`inline-flex items-center text-sm font-medium ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
+      <span className={`inline-flex items-center text-sm font-medium ${isPositive ? 'text-blue-600' : 'text-red-600'}`}>
         {isPositive ? (
           <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clipRule="evenodd" />
@@ -188,15 +183,16 @@ const Dashboard = () => {
         </div>
         
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 auto-rows-fr">
           {statCards.map((stat, index) => (
             <motion.div
               key={stat.title}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
+              className="h-full"
             >
-              <Card className="h-full p-5 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow">
+              <Card className="h-full" hover={true}>
                 <div className="flex items-center">
                   <div className={`p-3 rounded-lg ${stat.bgColor} border ${stat.borderColor}`}>
                     <div className={stat.color}>
@@ -228,12 +224,12 @@ const Dashboard = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            <Card className="p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+            <Card>
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                   Message Activity
                 </h3>
-                <Badge variant="success" size="small" className="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
+                <Badge variant="success" size="small">
                   {selectedTimeRange}
                 </Badge>
               </div>
@@ -290,7 +286,7 @@ const Dashboard = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            <Card className="p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+            <Card>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">
                 Message Types
               </h3>
@@ -298,7 +294,7 @@ const Dashboard = () => {
               <div className="space-y-5">
                 {[
                   { type: 'Text Messages', count: textMessages || 0, color: 'bg-blue-500' },
-                  { type: 'Images', count: imageMessages || 0, color: 'bg-green-500' },
+                  { type: 'Images', count: imageMessages || 0, color: 'bg-blue-500' },
                   { type: 'Files', count: fileMessages || 0, color: 'bg-purple-500' },
                   { type: 'AI Responses', count: aiMessages || 0, color: 'bg-orange-500' },
                 ].map((item) => {
@@ -345,14 +341,11 @@ const Dashboard = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
           >
-            <Card className="p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-              <div className="flex items-center justify-between mb-6">
+            <Card>
+              <div className="mb-6">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                   Recent Messages
                 </h3>
-                <button className="text-sm font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
-                  View all
-                </button>
               </div>
               
               <div className="space-y-5">
@@ -407,14 +400,11 @@ const Dashboard = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            <Card className="p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-              <div className="flex items-center justify-between mb-6">
+            <Card>
+              <div className="mb-6">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                   Recent Contacts
                 </h3>
-                <button className="text-sm font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
-                  View all
-                </button>
               </div>
               
               <div className="grid grid-cols-4 gap-4">
@@ -429,7 +419,7 @@ const Dashboard = () => {
                           className="mx-auto mb-2"
                         />
                         {contact.isOnline && (
-                          <div className="absolute bottom-2 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-gray-800"></div>
+                          <div className="absolute bottom-2 right-0 w-3 h-3 bg-blue-500 rounded-full border-2 border-white dark:border-gray-800"></div>
                         )}
                       </div>
                       <p className="text-xs font-medium text-gray-900 dark:text-white truncate">

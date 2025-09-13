@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 const morgan = require('morgan');
 const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+require('dotenv').config();
 
 // Import routes
 const authRoutes = require('./routes/auth');
@@ -48,8 +48,8 @@ app.use(compression());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Static file serving - removed for production (using S3 storage)
-// app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+// Static file serving (Note: For Vercel, files should be in public folder)
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // Rate limiting for API routes
 app.use('/api', apiLimiter);

@@ -268,7 +268,7 @@ const MessageInput = ({ chatId, disabled = false }) => {
               {attachments.map((attachment) => (
                 <div key={attachment.id} className="flex items-center space-x-2 bg-white dark:bg-gray-600 rounded-lg p-2 border">
                   {attachment.isVoiceNote ? (
-                    <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                    <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
                       <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clipRule="evenodd" />
                       </svg>
@@ -326,7 +326,7 @@ const MessageInput = ({ chatId, disabled = false }) => {
                   onClick={() => setSelectedCategory(category)}
                   className={`flex-1 py-2 px-3 text-xs font-medium transition-colors ${
                     selectedCategory === category
-                      ? 'text-green-600 dark:text-green-400 bg-white dark:bg-gray-800 border-b-2 border-green-600 dark:border-green-400'
+                      ? 'text-blue-600 dark:text-blue-400 bg-white dark:bg-gray-800 border-b-2 border-blue-600 dark:border-blue-400'
                       : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
                   }`}
                 >
@@ -388,7 +388,7 @@ const MessageInput = ({ chatId, disabled = false }) => {
         <button
           onClick={() => fileInputRef.current?.click()}
           disabled={disabled}
-          className="flex-shrink-0 p-2 text-gray-500 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex-shrink-0 p-2 text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 disabled:opacity-50 disabled:cursor-not-allowed mb-1"
           title="Attach file"
         >
           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
@@ -400,7 +400,7 @@ const MessageInput = ({ chatId, disabled = false }) => {
         <button
           onClick={() => setShowEmojiPicker(!showEmojiPicker)}
           disabled={disabled}
-          className="flex-shrink-0 p-2 text-gray-500 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex-shrink-0 p-2 text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 disabled:opacity-50 disabled:cursor-not-allowed mb-1"
           title="Add emoji"
         >
           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
@@ -413,7 +413,7 @@ const MessageInput = ({ chatId, disabled = false }) => {
           <button
             onClick={startRecording}
             disabled={disabled}
-            className="flex-shrink-0 p-2 text-gray-500 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex-shrink-0 p-2 text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 disabled:opacity-50 disabled:cursor-not-allowed mb-1"
             title="Record voice note"
           >
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
@@ -421,14 +421,14 @@ const MessageInput = ({ chatId, disabled = false }) => {
             </svg>
           </button>
         ) : (
-          <div className="flex items-center space-x-2 bg-red-50 dark:bg-red-900/20 rounded-full px-3 py-1">
+          <div className="flex items-center space-x-2 bg-red-50 dark:bg-red-900/20 rounded-full px-3 py-1 mb-1">
             <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
             <span className="text-sm font-medium text-red-600 dark:text-red-400">
               {formatTime(recordingTime)}
             </span>
             <button
               onClick={stopRecording}
-              className="p-1 text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300"
+              className="p-1 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
               title="Stop recording"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -457,7 +457,7 @@ const MessageInput = ({ chatId, disabled = false }) => {
             placeholder={disabled ? "This chat is unavailable" : "Type a message..."}
             disabled={disabled}
             rows={1}
-            className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-full resize-none focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed max-h-32 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+            className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-full resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed max-h-32 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
           />
         </div>
 
@@ -465,7 +465,7 @@ const MessageInput = ({ chatId, disabled = false }) => {
         <Button
           onClick={handleSendMessage}
           disabled={(!message.trim() && attachments.length === 0) || disabled || sendingMessage}
-          className="flex-shrink-0 w-12 h-12 rounded-full bg-green-500 hover:bg-green-600 disabled:bg-gray-300 dark:disabled:bg-gray-600 flex items-center justify-center"
+          className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 dark:disabled:bg-gray-600 flex items-center justify-center"
           title="Send message"
         >
           {sendingMessage ? (

@@ -153,7 +153,7 @@ export const ConfirmDialog = ({
   const variants = {
     danger: 'bg-red-600 hover:bg-red-700 focus:ring-red-500',
     warning: 'bg-yellow-600 hover:bg-yellow-700 focus:ring-yellow-500',
-    success: 'bg-green-600 hover:bg-green-700 focus:ring-green-500',
+    success: 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500',
     info: 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500',
   };
 
@@ -170,7 +170,7 @@ export const ConfirmDialog = ({
           mx-auto flex items-center justify-center h-12 w-12 rounded-full mb-4
           ${variant === 'danger' ? 'bg-red-100 dark:bg-red-900' : ''}
           ${variant === 'warning' ? 'bg-yellow-100 dark:bg-yellow-900' : ''}
-          ${variant === 'success' ? 'bg-green-100 dark:bg-green-900' : ''}
+          ${variant === 'success' ? 'bg-blue-100 dark:bg-blue-900' : ''}
           ${variant === 'info' ? 'bg-blue-100 dark:bg-blue-900' : ''}
         `}>
           {variant === 'danger' && (
@@ -184,7 +184,7 @@ export const ConfirmDialog = ({
             </svg>
           )}
           {variant === 'success' && (
-            <svg className="h-6 w-6 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           )}

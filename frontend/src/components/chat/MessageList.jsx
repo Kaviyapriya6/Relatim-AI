@@ -265,7 +265,7 @@ const MessageList = ({ chatId }) => {
     return (
       <div className="flex-1 flex items-center justify-center">
         <div className="flex flex-col items-center space-y-4">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-500"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
           <p className="text-gray-500 dark:text-gray-400">Loading messages...</p>
         </div>
       </div>
@@ -287,7 +287,7 @@ const MessageList = ({ chatId }) => {
           </p>
           <button
             onClick={() => dispatch(fetchMessages(chatId))}
-            className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
           >
             Try again
           </button>
@@ -383,7 +383,7 @@ const MessageList = ({ chatId }) => {
         {/* Loading more messages indicator */}
         {loading && messages.length > 0 && (
           <div className="flex justify-center py-4">
-            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-green-500"></div>
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
           </div>
         )}
 
@@ -399,7 +399,7 @@ const MessageList = ({ chatId }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             onClick={scrollToBottom}
-            className="absolute bottom-4 right-4 w-12 h-12 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg flex items-center justify-center transition-colors"
+            className="absolute bottom-4 right-4 w-12 h-12 bg-blue-500 hover:bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center transition-colors"
           >
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 112 0v11.586l4.293-4.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -411,8 +411,8 @@ const MessageList = ({ chatId }) => {
       {/* Connection Status Indicator */}
       <div className="absolute top-2 right-2 z-50">
         {socketService.isConnectedToServer() ? (
-          <div className="flex items-center space-x-1 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+          <div className="flex items-center space-x-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 px-2 py-1 rounded-full text-xs">
+            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
             <span>Live</span>
           </div>
         ) : autoRefreshEnabled ? (

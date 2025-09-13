@@ -257,7 +257,7 @@ const ChatsChart = () => {
       {chartData && (
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
           <div className="text-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-            <p className="text-xl font-bold text-green-600 dark:text-green-400">
+            <p className="text-xl font-bold text-blue-600 dark:text-blue-400">
               {chartData.datasets[0]?.data?.reduce((a, b) => a + b, 0) || 0}
             </p>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Total Messages</p>

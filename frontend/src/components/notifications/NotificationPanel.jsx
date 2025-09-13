@@ -63,8 +63,8 @@ const NotificationPanel = ({ isOpen, onClose }) => {
     switch (type) {
       case 'success':
         return (
-          <div className="p-2 bg-green-100 dark:bg-green-900/20 rounded-full">
-            <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+          <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-full">
+            <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
           </div>
@@ -95,8 +95,8 @@ const NotificationPanel = ({ isOpen, onClose }) => {
         );
       case 'message':
         return (
-          <div className="p-2 bg-green-100 dark:bg-green-900/20 rounded-full">
-            <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+          <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-full">
+            <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
               <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
               <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
             </svg>
@@ -128,7 +128,7 @@ const NotificationPanel = ({ isOpen, onClose }) => {
               onClick={() => setFilter('all')}
               className={`px-3 py-1 text-sm rounded-full transition-colors ${
                 filter === 'all'
-                  ? 'bg-green-100 dark:bg-green-900/20 text-green-600'
+                  ? 'bg-blue-100 dark:bg-blue-900/20 text-blue-600'
                   : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
               }`}
             >
@@ -139,7 +139,7 @@ const NotificationPanel = ({ isOpen, onClose }) => {
               onClick={() => setFilter('unread')}
               className={`px-3 py-1 text-sm rounded-full transition-colors ${
                 filter === 'unread'
-                  ? 'bg-green-100 dark:bg-green-900/20 text-green-600'
+                  ? 'bg-blue-100 dark:bg-blue-900/20 text-blue-600'
                   : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
               }`}
             >
@@ -150,7 +150,7 @@ const NotificationPanel = ({ isOpen, onClose }) => {
               onClick={() => setFilter('messages')}
               className={`px-3 py-1 text-sm rounded-full transition-colors ${
                 filter === 'messages'
-                  ? 'bg-green-100 dark:bg-green-900/20 text-green-600'
+                  ? 'bg-blue-100 dark:bg-blue-900/20 text-blue-600'
                   : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
               }`}
             >
@@ -203,7 +203,7 @@ const NotificationPanel = ({ isOpen, onClose }) => {
                   exit={{ opacity: 0, y: -20 }}
                   className={`p-4 rounded-lg border transition-colors cursor-pointer ${
                     !notification.read
-                      ? 'bg-green-50 dark:bg-green-900/10 border-green-200 dark:border-green-800'
+                      ? 'bg-blue-50 dark:bg-blue-900/10 border-blue-200 dark:border-blue-800'
                       : 'bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700'
                   } hover:bg-gray-100 dark:hover:bg-gray-700`}
                   onClick={() => {

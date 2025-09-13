@@ -149,7 +149,7 @@ const RecentChats = () => {
                     <div className={`w-full h-full flex items-center justify-center ${
                       chat.type === 'ai' 
                         ? 'bg-orange-500' 
-                        : 'bg-green-500'
+                        : 'bg-blue-500'
                     }`}>
                       <span className="text-white font-medium text-lg">
                         {chat.name?.charAt(0)?.toUpperCase() || 'U'}
@@ -160,7 +160,7 @@ const RecentChats = () => {
                 
                 {/* Online indicator */}
                 {chat.isOnline && chat.type !== 'ai' && (
-                  <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-white dark:border-gray-800 rounded-full"></div>
+                  <div className="absolute bottom-0 right-0 w-4 h-4 bg-blue-500 border-2 border-white dark:border-gray-800 rounded-full"></div>
                 )}
                 
                 {/* AI indicator */}

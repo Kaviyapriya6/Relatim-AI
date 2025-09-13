@@ -3,16 +3,20 @@ import { motion } from 'framer-motion';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Badge } from '../common';
-import { logout } from '../../store/slices/authSlice';
+import { logoutUser } from '../../store/slices/authSlice';
 
 const Sidebar = ({ isOpen, onClose }) => {
   const location = useLocation();
   const dispatch = useDispatch();
   const { unreadCounts } = useSelector((state) => state.messages);
 
-  const handleLogout = () => {
-    dispatch(logout());
-    onClose(); // Close sidebar after logout
+  const handleLogout = async () => {
+    try {
+      await dispatch(logoutUser()).unwrap();
+      onClose(); // Close sidebar after logout
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
   const navigation = [
@@ -83,15 +87,6 @@ const Sidebar = ({ isOpen, onClose }) => {
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
-    },
-    {
-      name: 'Logout',
-      action: 'logout',
-      icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
         </svg>
       ),
     },
@@ -234,22 +229,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                 System
               </h3>
               {secondaryNavigation.map((item) => {
-                const isActive = item.href && location.pathname === item.href;
-                
-                if (item.action === 'logout') {
-                  return (
-                    <button
-                      key={item.name}
-                      onClick={handleLogout}
-                      className="w-full group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30"
-                    >
-                      <span className="mr-3 flex-shrink-0 transition-colors duration-200 text-red-500 group-hover:text-red-600 dark:group-hover:text-red-300">
-                        {item.icon}
-                      </span>
-                      <span className="flex-1 font-medium text-left">{item.name}</span>
-                    </button>
-                  );
-                }
+                const isActive = location.pathname === item.href;
                 
                 return (
                   <NavLink
@@ -258,13 +238,30 @@ const Sidebar = ({ isOpen, onClose }) => {
                     onClick={onClose}
                     className={({ isActive: linkIsActive }) => getNavLinkClassName(isActive, linkIsActive)}
                   >
-                    <span className={({ isActive: linkIsActive }) => getIconClassName(isActive, linkIsActive)}>
-                      {item.icon}
-                    </span>
-                    <span className="flex-1 font-medium">{item.name}</span>
+                    {({ isActive: linkIsActive }) => (
+                      <>
+                        <span className={getIconClassName(isActive, linkIsActive)}>
+                          {item.icon}
+                        </span>
+                        <span className="flex-1 font-medium">{item.name}</span>
+                      </>
+                    )}
                   </NavLink>
                 );
               })}
+              
+              {/* Logout button - Fixed spacing */}
+              <button
+                onClick={handleLogout}
+                className="group flex items-center w-full px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-700 dark:hover:text-red-300"
+              >
+                <span className="mr-3 flex-shrink-0 transition-colors duration-200 text-gray-500 group-hover:text-red-600 dark:group-hover:text-red-400">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  </svg>
+                </span>
+                <span className="flex-1 font-medium">Logout</span>
+              </button>
             </div>
           </nav>
           

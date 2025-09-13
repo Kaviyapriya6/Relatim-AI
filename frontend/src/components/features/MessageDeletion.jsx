@@ -52,7 +52,7 @@ const MessageDeletion = ({
         <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
           <div className="flex items-start space-x-3">
             <div className="flex-shrink-0">
-              <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+              <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
                 <span className="text-white text-sm font-medium">
                   {message?.senderName?.charAt(0) || 'U'}
                 </span>

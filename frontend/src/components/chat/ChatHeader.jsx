@@ -107,7 +107,7 @@ const ChatHeader = ({ chatId, contact, onBack }) => {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full bg-green-500 flex items-center justify-center">
+                  <div className="w-full h-full bg-blue-500 flex items-center justify-center">
                     <span className="text-white text-sm font-medium">
                       {contact.name?.charAt(0) || 'U'}
                     </span>
@@ -116,7 +116,7 @@ const ChatHeader = ({ chatId, contact, onBack }) => {
               </div>
               {/* Online indicator */}
               {isOnline && (
-                <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-gray-800 rounded-full"></div>
+                <div className="absolute bottom-0 right-0 w-3 h-3 bg-blue-500 border-2 border-white dark:border-gray-800 rounded-full"></div>
               )}
             </div>
 

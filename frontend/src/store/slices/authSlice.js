@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api, { uploadAPI } from '../../services/api';
 import socketService, { safeConnectSocket } from '../../services/socket';
+import { normalizeUserObject, updateUserInStorage } from '../../utils/userUtils';
 
 // Async thunks
 export const loginUser = createAsyncThunk(
@@ -21,9 +22,12 @@ export const loginUser = createAsyncThunk(
         throw new Error('Invalid token received from server');
       }
       
-      // Store token in localStorage
+      // Normalize user object
+      const normalizedUser = normalizeUserObject(user);
+      
+      // Store token and normalized user in localStorage
       localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));
+      updateUserInStorage(normalizedUser);
       
       // Connect to socket with validated token
       try {
@@ -33,7 +37,7 @@ export const loginUser = createAsyncThunk(
         // Don't fail the login if socket connection fails
       }
       
-      return { user, token, success: true };
+      return { user: normalizedUser, token, success: true };
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || error.message || 'Login failed');
     }
@@ -58,9 +62,12 @@ export const registerUser = createAsyncThunk(
         throw new Error('Invalid token received from server');
       }
       
-      // Store token in localStorage
+      // Normalize user object
+      const normalizedUser = normalizeUserObject(user);
+      
+      // Store token and normalized user in localStorage
       localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));
+      updateUserInStorage(normalizedUser);
       
       // Connect to socket with validated token
       try {
@@ -70,7 +77,7 @@ export const registerUser = createAsyncThunk(
         // Don't fail the registration if socket connection fails
       }
       
-      return { user, token, success: true };
+      return { user: normalizedUser, token, success: true };
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || error.message || 'Registration failed');
     }
@@ -184,11 +191,11 @@ export const checkAuthStatus = createAsyncThunk(
           console.warn('Socket connection failed during token verification:', socketError);
         }
         
-        return { user: response.data.user, token };
+        return { user: normalizeUserObject(response.data.user), token };
       } catch (verifyError) {
         console.warn('Token verification failed, using local user data:', verifyError);
         // Return local user data instead of null
-        return { user: localUser, token };
+        return { user: normalizeUserObject(localUser), token };
       }
     } catch (error) {
       // Clear invalid data
@@ -204,7 +211,7 @@ export const fetchUserProfile = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await api.get('/users/profile');
-      return response.data.data.user;
+      return normalizeUserObject(response.data.data.user);
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to fetch profile');
     }
@@ -218,7 +225,7 @@ export const updateProfile = createAsyncThunk(
       const response = await api.put('/users/profile', profileData);
       console.log('Update profile response:', response.data);
       // Backend returns: { success: true, data: { user: updatedUser } }
-      return response.data.data.user;
+      return normalizeUserObject(response.data.data.user);
     } catch (error) {
       console.error('Update profile error:', error);
       return rejectWithValue(error.response?.data?.message || 'Profile update failed');
@@ -309,8 +316,9 @@ const authSlice = createSlice({
       state.passwordResetSent = false;
     },
     updateUser: (state, action) => {
-      state.user = { ...state.user, ...action.payload };
-      localStorage.setItem('user', JSON.stringify(state.user));
+      const updatedUser = normalizeUserObject({ ...state.user, ...action.payload });
+      state.user = updatedUser;
+      updateUserInStorage(updatedUser);
     },
     setSessionExpiry: (state, action) => {
       state.sessionExpiry = action.payload;
@@ -332,7 +340,8 @@ const authSlice = createSlice({
       if (token && token !== 'null' && token !== 'undefined' && userStr && userStr !== 'null' && userStr !== 'undefined') {
         try {
           state.token = token;
-          state.user = JSON.parse(userStr);
+          const parsedUser = JSON.parse(userStr);
+          state.user = normalizeUserObject(parsedUser);
           state.isAuthenticated = true;
           // Connect to socket if not already connected
           if (!socketService.isConnectedToServer()) {
@@ -534,8 +543,9 @@ const authSlice = createSlice({
       })
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
-        localStorage.setItem('user', JSON.stringify(action.payload));
+        const normalizedUser = normalizeUserObject(action.payload);
+        state.user = normalizedUser;
+        updateUserInStorage(normalizedUser);
         state.error = null;
       })
       .addCase(fetchUserProfile.rejected, (state, action) => {
@@ -551,8 +561,9 @@ const authSlice = createSlice({
       })
       .addCase(updateProfile.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
-        localStorage.setItem('user', JSON.stringify(action.payload));
+        const normalizedUser = normalizeUserObject(action.payload);
+        state.user = normalizedUser;
+        updateUserInStorage(normalizedUser);
         state.error = null;
       })
       .addCase(updateProfile.rejected, (state, action) => {
@@ -569,8 +580,13 @@ const authSlice = createSlice({
       .addCase(uploadProfilePhoto.fulfilled, (state, action) => {
         state.loading = false;
         if (state.user) {
-          state.user.profile_photo = action.payload;
-          localStorage.setItem('user', JSON.stringify(state.user));
+          const updatedUser = normalizeUserObject({
+            ...state.user,
+            profile_photo: action.payload,
+            profilePhoto: action.payload
+          });
+          state.user = updatedUser;
+          updateUserInStorage(updatedUser);
         }
         state.error = null;
       })

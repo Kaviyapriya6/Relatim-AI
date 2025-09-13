@@ -129,9 +129,8 @@ export const aiAPI = {
   streamMessage: (prompt) => {
     // Server-Sent Events endpoint
     const token = localStorage.getItem('token'); // Changed from 'authToken' to 'token'
-    const baseURL = process.env.REACT_APP_API_URL || '/api';
-    const url = baseURL.endsWith('/api') ? `${baseURL}/ai/stream` : `${baseURL}/api/ai/stream`;
-    return fetch(url, {
+    const baseURL = process.env.REACT_APP_API_URL || '';
+    return fetch(`${baseURL}/api/ai/stream`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -131,7 +131,7 @@ const ContactProfile = ({ contact, isOpen, onClose }) => {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full bg-green-500 flex items-center justify-center">
+                  <div className="w-full h-full bg-blue-500 flex items-center justify-center">
                     <span className="text-white text-2xl font-bold">
                       {contact.name?.charAt(0)?.toUpperCase() || 'U'}
                     </span>
@@ -139,7 +139,7 @@ const ContactProfile = ({ contact, isOpen, onClose }) => {
                 )}
               </div>
               {contact.isOnline && (
-                <div className="absolute bottom-4 right-0 w-6 h-6 bg-green-500 border-4 border-white dark:border-gray-800 rounded-full"></div>
+                <div className="absolute bottom-4 right-0 w-6 h-6 bg-blue-500 border-4 border-white dark:border-gray-800 rounded-full"></div>
               )}
             </div>
 
@@ -148,7 +148,7 @@ const ContactProfile = ({ contact, isOpen, onClose }) => {
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                   {contact.name}
                 </h3>
-                <p className="text-sm text-green-600 dark:text-green-400 font-medium">
+                <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
                   {contact.isOnline ? 'Online' : `Last seen ${formatLastSeen(contact.lastSeen)}`}
                 </p>
               </div>
@@ -160,7 +160,7 @@ const ContactProfile = ({ contact, isOpen, onClose }) => {
                   value={formData.name}
                   onChange={handleInputChange}
                   placeholder="Contact name"
-                  className="block w-full px-3 py-2 text-center text-xl font-semibold border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
+                  className="block w-full px-3 py-2 text-center text-xl font-semibold border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
             )}
@@ -184,7 +184,7 @@ const ContactProfile = ({ contact, isOpen, onClose }) => {
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="Email address"
-                  className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
+                  className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                 />
               )}
             </div>
@@ -205,7 +205,7 @@ const ContactProfile = ({ contact, isOpen, onClose }) => {
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
                   placeholder="Phone number"
-                  className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
+                  className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                 />
               )}
             </div>
@@ -226,7 +226,7 @@ const ContactProfile = ({ contact, isOpen, onClose }) => {
                   onChange={handleInputChange}
                   placeholder="About this contact"
                   rows={3}
-                  className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
+                  className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                 />
               )}
             </div>

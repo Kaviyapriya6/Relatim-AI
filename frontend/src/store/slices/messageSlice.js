@@ -40,7 +40,7 @@ export const fetchRecentChats = createAsyncThunk(
 
 export const sendMessage = createAsyncThunk(
   'messages/sendMessage',
-  async ({ contactId, content, type = 'text', file = null }, { rejectWithValue }) => {
+  async ({ contactId, content, type = 'text', file = null, replyToId = null }, { rejectWithValue }) => {
     try {
       const formData = new FormData();
       formData.append('receiver_id', contactId);
@@ -52,6 +52,11 @@ export const sendMessage = createAsyncThunk(
       
       if (file) {
         formData.append('file', file);
+      }
+      
+      // Add reply_to_message_id if replying to a message
+      if (replyToId) {
+        formData.append('reply_to_message_id', replyToId);
       }
       
       const response = await api.post('/messages', formData, {

@@ -10,12 +10,9 @@ import {
   PublicRoute 
 } from './components/auth';
 import { Layout } from './components/layout';
-import { Dashboard, Chat, ChatList, AIChat, Contacts, Profile, Help } from './pages';
+import { Dashboard, Chat, ChatList, AIChat, Contacts, Profile, Help, Calls } from './pages';
 import { checkAuthStatus } from './store/slices/authSlice';
 import { syncThemeWithUserSettings } from './store/slices/uiSlice';
-
-// Remaining features
-const Calls = () => <div className="p-6"><h1 className="text-2xl font-bold">Calls Page</h1></div>;
 
 function App() {
   const dispatch = useDispatch();

@@ -40,7 +40,7 @@ export const ChatListItem = ({
         flex items-center p-3 cursor-pointer transition-all duration-200
         border-l-4 border-transparent
         ${isActive 
-          ? 'bg-green-50 dark:bg-green-900/20 border-l-green-500' 
+          ? 'bg-blue-50 dark:bg-blue-900/20 border-l-blue-500' 
           : 'hover:bg-gray-50 dark:hover:bg-gray-800'
         }
         ${className}
@@ -73,7 +73,7 @@ export const ChatListItem = ({
         <div className="flex items-center justify-between">
           <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
             {chat.isTyping ? (
-              <span className="text-green-600 dark:text-green-400 italic">Typing...</span>
+              <span className="text-blue-600 dark:text-blue-400 italic">Typing...</span>
             ) : (
               truncateMessage(chat.lastMessage)
             )}
@@ -81,7 +81,7 @@ export const ChatListItem = ({
           
           <div className="flex items-center space-x-2 flex-shrink-0 ml-2">
             {chat.unreadCount > 0 && (
-              <span className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-green-600 rounded-full min-w-[20px]">
+              <span className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-blue-600 rounded-full min-w-[20px]">
                 {chat.unreadCount > 99 ? '99+' : chat.unreadCount}
               </span>
             )}
@@ -122,7 +122,7 @@ export const ContactListItem = ({
       className={`
         flex items-center p-3 cursor-pointer transition-all duration-200
         ${isSelected 
-          ? 'bg-green-50 dark:bg-green-900/20' 
+          ? 'bg-blue-50 dark:bg-blue-900/20' 
           : 'hover:bg-gray-50 dark:hover:bg-gray-800'
         }
         ${className}
@@ -158,7 +158,7 @@ export const ContactListItem = ({
 
       {isSelected && (
         <div className="flex-shrink-0 ml-2">
-          <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+          <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
           </svg>
         </div>
@@ -247,7 +247,7 @@ export const MessageListItem = ({
       <div className={`
         max-w-xs lg:max-w-md px-4 py-2 rounded-lg
         ${isSent 
-          ? 'bg-green-500 text-white' 
+          ? 'bg-blue-500 text-white' 
           : 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-600'
         }
       `}>

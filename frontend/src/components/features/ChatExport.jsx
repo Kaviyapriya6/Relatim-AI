@@ -250,7 +250,7 @@ const ChatExport = ({ isOpen, onClose, chatData, contactName }) => {
                 whileTap={{ scale: 0.98 }}
                 className={`p-4 border-2 rounded-lg cursor-pointer transition-all ${
                   exportFormat === format.value
-                    ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
+                    ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
                     : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                 }`}
                 onClick={() => setExportFormat(format.value)}
@@ -338,7 +338,7 @@ const ChatExport = ({ isOpen, onClose, chatData, contactName }) => {
                   type="checkbox"
                   checked={exportOptions.includeMedia}
                   onChange={(e) => setExportOptions(prev => ({ ...prev, includeMedia: e.target.checked }))}
-                  className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
                 <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">
                   Include media references (images, files)
@@ -350,7 +350,7 @@ const ChatExport = ({ isOpen, onClose, chatData, contactName }) => {
                   type="checkbox"
                   checked={exportOptions.includeSystemMessages}
                   onChange={(e) => setExportOptions(prev => ({ ...prev, includeSystemMessages: e.target.checked }))}
-                  className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
                 <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">
                   Include system messages (user joined, etc.)

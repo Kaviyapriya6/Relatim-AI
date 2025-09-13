@@ -62,7 +62,7 @@ const MobileNavigation = ({ isOpen, onClose, activeTab, onTabChange }) => {
             className={`
               flex flex-col items-center justify-center space-y-1 transition-colors duration-200
               ${activeTab === tab.id
-                ? 'text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20'
+                ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
                 : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
               }
             `}

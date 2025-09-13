@@ -53,8 +53,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "vercel-build": "echo 'REACT_APP_API_URL=/api' > .env && echo 'REACT_APP_SOCKET_URL=/' >> .env && echo 'REACT_APP_NODE_ENV=production' >> .env && echo 'GENERATE_SOURCEMAP=false' >> .env && npm run build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -73,5 +72,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:5000"
 }

@@ -146,7 +146,7 @@ const ActivityFeed = () => {
       case 'message':
         return 'bg-blue-500';
       case 'contact':
-        return 'bg-green-500';
+        return 'bg-blue-500';
       case 'audio':
       case 'video':
         return 'bg-purple-500';

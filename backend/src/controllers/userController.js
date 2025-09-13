@@ -2,6 +2,9 @@ const db = require('../config/database');
 const bcrypt = require('bcryptjs');
 const speakeasy = require('speakeasy');
 const QRCode = require('qrcode');
+const { optimizeImage } = require('../utils/imageProcessor');
+const { getFileUrl } = require('../utils/fileUtils');
+const path = require('path');
 
 class UserController {
   async getProfile(req, res) {
@@ -102,8 +105,27 @@ class UserController {
 
       // Handle profile photo upload
       let profile_photo = null;
-      if (req.uploadResult) {
-        profile_photo = req.uploadResult.url;
+      if (req.file) {
+        try {
+          const optimizedPath = path.join(
+            path.dirname(req.file.path),
+            `optimized_${path.basename(req.file.path)}`
+          );
+          
+          await optimizeImage(req.file.path, optimizedPath, {
+            width: 400,
+            height: 400,
+            quality: 85
+          });
+
+          profile_photo = getFileUrl(
+            `uploads/profiles/${path.basename(optimizedPath)}`,
+            `${req.protocol}://${req.get('host')}`
+          );
+        } catch (imageError) {
+          console.error('Profile photo optimization error:', imageError);
+          // Continue without updating profile photo if optimization fails
+        }
       }
 
       // Build update query dynamically
@@ -181,15 +203,38 @@ class UserController {
     try {
       const userId = req.user.id;
 
-      if (!req.uploadResult) {
+      if (!req.file) {
         return res.status(400).json({
           success: false,
           message: 'No profile photo provided'
         });
       }
 
-      // Get the S3 upload result from middleware
-      const { url: profile_photo } = req.uploadResult;
+      // Handle profile photo upload and optimization
+      let profile_photo = null;
+      try {
+        const optimizedPath = path.join(
+          path.dirname(req.file.path),
+          `optimized_${path.basename(req.file.path)}`
+        );
+        
+        await optimizeImage(req.file.path, optimizedPath, {
+          width: 400,
+          height: 400,
+          quality: 85
+        });
+
+        profile_photo = getFileUrl(
+          `uploads/profiles/${path.basename(optimizedPath)}`,
+          `${req.protocol}://${req.get('host')}`
+        );
+      } catch (imageError) {
+        console.error('Profile photo optimization error:', imageError);
+        return res.status(500).json({
+          success: false,
+          message: 'Failed to process profile photo'
+        });
+      }
 
       // Update profile photo in database
       const result = await db.query(
@@ -207,28 +252,23 @@ class UserController {
         });
       }
 
-      const user = result.rows[0];
+      const updatedUser = result.rows[0];
 
       res.json({
         success: true,
         message: 'Profile photo updated successfully',
-        data: {
-          user: {
-            id: user.id,
-            first_name: user.first_name,
-            last_name: user.last_name,
-            email: user.email,
-            phone_number: user.phone_number,
-            profile_photo: user.profile_photo,
-            updated_at: user.updated_at
-          }
+        data: { 
+          user: updatedUser,
+          profile_photo: profile_photo
         }
       });
+
     } catch (error) {
       console.error('Update profile photo error:', error);
       res.status(500).json({
         success: false,
-        message: 'Failed to update profile photo'
+        message: 'Failed to update profile photo',
+        error: process.env.NODE_ENV === 'development' ? error.message : 'Internal server error'
       });
     }
   }

@@ -74,7 +74,7 @@ const CallHistory = ({ isOpen, onClose, onInitiateCall }) => {
     const isMissed = call.status === 'missed';
     const isOutgoing = call.direction === 'outgoing';
     
-    let colorClass = isMissed ? 'text-red-500' : 'text-green-500';
+    let colorClass = isMissed ? 'text-red-500' : 'text-blue-500';
     
     if (isVideo) {
       return (
@@ -201,7 +201,7 @@ const CallHistory = ({ isOpen, onClose, onInitiateCall }) => {
         <div className="space-y-2">
           {loading ? (
             <div className="flex items-center justify-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-500"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
               <span className="ml-2 text-gray-600 dark:text-gray-400">Loading calls...</span>
             </div>
           ) : filteredCalls.length === 0 ? (
@@ -239,7 +239,7 @@ const CallHistory = ({ isOpen, onClose, onInitiateCall }) => {
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            <div className="w-full h-full bg-green-500 flex items-center justify-center">
+                            <div className="w-full h-full bg-blue-500 flex items-center justify-center">
                               <span className="text-white text-sm font-medium">
                                 {call.contactName?.charAt(0) || 'U'}
                               </span>
@@ -285,7 +285,7 @@ const CallHistory = ({ isOpen, onClose, onInitiateCall }) => {
                         className="p-2"
                         title="Audio call"
                       >
-                        <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                        <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                         </svg>
                       </Button>

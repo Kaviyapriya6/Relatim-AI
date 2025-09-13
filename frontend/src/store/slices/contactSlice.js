@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../services/api';
+import { normalizeContactObject } from '../../utils/userUtils';
 
 // Async thunks
 export const fetchContacts = createAsyncThunk(
@@ -42,7 +43,7 @@ export const updateContact = createAsyncThunk(
 
 export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
-  async ({ contactId }, { rejectWithValue }) => {
+  async (contactId, { rejectWithValue }) => {
     try {
       await api.delete(`/contacts/${contactId}`);
       return contactId;
@@ -317,26 +318,29 @@ const contactSlice = createSlice({
         state.loading = false;
         const { contacts = [], pagination = {} } = action.payload?.data || {};
         
+        // Normalize all contacts
+        const normalizedContacts = contacts.map(contact => normalizeContactObject(contact));
+        
         const page = action.meta.arg?.page || 1;
         if (page === 1) {
-          state.contacts = contacts;
+          state.contacts = normalizedContacts;
         } else {
-          state.contacts.push(...contacts);
+          state.contacts.push(...normalizedContacts);
         }
         
         state.pagination = pagination;
         state.error = null;
         
         // Update related arrays
-        state.onlineContacts = contacts
-          .filter(c => c.is_online)
+        state.onlineContacts = normalizedContacts
+          .filter(c => c.isOnline)
           .map(c => c.id);
         
-        state.favoriteContacts = contacts
+        state.favoriteContacts = normalizedContacts
           .filter(c => c.is_favorite)
           .map(c => c.id);
         
-        state.blockedContacts = contacts
+        state.blockedContacts = normalizedContacts
           .filter(c => c.is_blocked)
           .map(c => c.id);
       })
@@ -355,7 +359,8 @@ const contactSlice = createSlice({
         state.loading = false;
         const contact = action.payload?.data?.contact;
         if (contact) {
-          state.contacts.unshift(contact);
+          const normalizedContact = normalizeContactObject(contact);
+          state.contacts.unshift(normalizedContact);
         }
         state.error = null;
       })
@@ -374,15 +379,16 @@ const contactSlice = createSlice({
         state.loading = false;
         const updatedContact = action.payload?.data?.contact;
         if (updatedContact) {
+          const normalizedContact = normalizeContactObject(updatedContact);
           const index = state.contacts.findIndex(c => c.id === updatedContact.id);
           
           if (index !== -1) {
-            state.contacts[index] = updatedContact;
+            state.contacts[index] = normalizedContact;
           }
         }
         
         if (state.activeContact?.id === updatedContact.id) {
-          state.activeContact = updatedContact;
+          state.activeContact = normalizeContactObject(updatedContact);
         }
         
         state.error = null;

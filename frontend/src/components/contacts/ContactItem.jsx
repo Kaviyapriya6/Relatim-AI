@@ -51,7 +51,7 @@ const ContactItem = ({ contact, isSelected, onClick, showActions = true }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className={`flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer transition-colors border-b border-gray-100 dark:border-gray-700 ${
-        isSelected ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800' : ''
+        isSelected ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800' : ''
       }`}
       onClick={onClick}
     >
@@ -73,7 +73,7 @@ const ContactItem = ({ contact, isSelected, onClick, showActions = true }) => {
               {contact.nickname || `${contact.first_name || contact.name} ${contact.last_name || ''}`}
             </h3>
             {contact.unreadCount > 0 && (
-              <span className="ml-2 bg-green-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+              <span className="ml-2 bg-blue-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                 {contact.unreadCount > 99 ? '99+' : contact.unreadCount}
               </span>
             )}
@@ -153,7 +153,7 @@ const ContactItem = ({ contact, isSelected, onClick, showActions = true }) => {
 
       {/* Confirmation Dialog */}
       {showConfirmDelete && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999]" onClick={(e) => e.stopPropagation()}>
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}

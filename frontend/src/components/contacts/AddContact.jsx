@@ -138,7 +138,7 @@ const AddContact = ({ isOpen, onClose }) => {
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder="Enter email address"
-                className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
+                className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
 
@@ -156,7 +156,7 @@ const AddContact = ({ isOpen, onClose }) => {
                 value={formData.phoneNumber}
                 onChange={handleInputChange}
                 placeholder="Enter phone number"
-                className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
+                className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
 
@@ -168,7 +168,7 @@ const AddContact = ({ isOpen, onClose }) => {
             >
               {isSearching ? (
                 <div className="flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-green-500 mr-2"></div>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500 mr-2"></div>
                   Searching...
                 </div>
               ) : (
@@ -198,7 +198,7 @@ const AddContact = ({ isOpen, onClose }) => {
                             className="w-full h-full object-cover"
                           />
                         ) : (
-                          <div className="w-full h-full bg-green-500 flex items-center justify-center">
+                          <div className="w-full h-full bg-blue-500 flex items-center justify-center">
                             <span className="text-white font-medium">
                               {user.name?.charAt(0)?.toUpperCase() || 'U'}
                             </span>
@@ -250,7 +250,7 @@ const AddContact = ({ isOpen, onClose }) => {
                   value={formData.name}
                   onChange={handleInputChange}
                   placeholder="Enter contact name"
-                  className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
+                  className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
 

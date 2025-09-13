@@ -26,10 +26,10 @@ const StatsCards = ({ stats }) => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-6a2 2 0 012-2h2m2-4h6a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-6a2 2 0 012-2h6a2 2 0 012-2z" />
         </svg>
       ),
-      color: 'text-green-600 dark:text-green-400',
-      bgColor: 'bg-green-50 dark:bg-green-900/30',
-      borderColor: 'border-green-200 dark:border-green-800',
-      iconBg: 'bg-green-500'
+      color: 'text-blue-600 dark:text-blue-400',
+      bgColor: 'bg-blue-50 dark:bg-blue-900/30',
+      borderColor: 'border-blue-200 dark:border-blue-800',
+      iconBg: 'bg-blue-500'
     },
     {
       title: 'Total Contacts',
@@ -75,7 +75,7 @@ const StatsCards = ({ stats }) => {
     const isPositive = change > 0;
     return (
       <div className={`flex items-center text-sm font-medium ${
-        isPositive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
+        isPositive ? 'text-blue-600 dark:text-blue-400' : 'text-red-600 dark:text-red-400'
       }`}>
         <svg 
           className={`w-4 h-4 mr-1 ${isPositive ? '' : 'transform rotate-180'}`} 
@@ -90,14 +90,14 @@ const StatsCards = ({ stats }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 auto-rows-fr">
       {cards.map((card, index) => (
         <motion.div
           key={card.title}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1 }}
-          className={`${card.bgColor} rounded-xl p-6 border ${card.borderColor} shadow-sm hover:shadow-md transition-shadow`}
+          className={`h-full ${card.bgColor} rounded-xl p-6 border ${card.borderColor} shadow-sm hover:shadow-md transition-shadow`}
         >
           <div className="flex items-center justify-between">
             <div className={`p-3 rounded-lg ${card.iconBg}`}>

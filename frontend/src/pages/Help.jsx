@@ -49,33 +49,27 @@ const Help = () => {
   const supportTopics = [
     {
       title: "Account & Profile",
-      icon: "👤",
-      description: "Manage your account settings, profile information, and privacy"
+      description: "Manage your account settings, profile information, privacy controls, and personal preferences. Update your name, email, phone number, bio, and profile picture."
     },
     {
       title: "Messaging",
-      icon: "💬",
-      description: "Send messages, share files, and use chat features"
+      description: "Send text messages, share files and images, edit or delete messages, and use advanced chat features like message reactions and replies."
     },
     {
       title: "Contacts",
-      icon: "👥",
-      description: "Add friends, manage contacts, and organize your connections"
+      description: "Add new friends by email or phone, organize your contact list, remove contacts, and manage contact permissions and visibility settings."
     },
     {
-      title: "Settings",
-      icon: "⚙️",
-      description: "Customize your experience, notifications, and preferences"
+      title: "Settings & Preferences",
+      description: "Customize your app experience with theme options, notification settings, language preferences, font sizes, and privacy controls."
     },
     {
       title: "AI Assistant",
-      icon: "🤖",
-      description: "Get help from our intelligent AI assistant"
+      description: "Get intelligent help and responses from our built-in AI assistant. Ask questions, get suggestions, and receive automated support."
     },
     {
-      title: "Technical Issues",
-      icon: "🔧",
-      description: "Troubleshoot problems and technical difficulties"
+      title: "Technical Support",
+      description: "Troubleshoot connection issues, report bugs, get help with app performance, and resolve technical difficulties or error messages."
     }
   ];
 
@@ -118,11 +112,11 @@ Thank you!`;
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <Card className="p-6 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 border-green-200 dark:border-green-700">
+            <Card className="p-6 bg-gradient-to-r from-blue-50 to-blue-50 dark:from-blue-900/20 dark:to-blue-900/20 border-blue-200 dark:border-blue-700">
               <div className="flex items-center justify-between">
                 <div>
                   <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                    Need Personal Help? 📧
+                    Need Personal Help?
                   </h2>
                   <p className="text-gray-600 dark:text-gray-400">
                     Can't find what you're looking for? Our support team is here to help!
@@ -147,25 +141,23 @@ Thank you!`;
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
               Browse by Topic
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-fr">
               {supportTopics.map((topic, index) => (
                 <motion.div
                   key={topic.title}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + index * 0.05 }}
+                  className="h-full"
                 >
-                  <Card className="p-4 hover:shadow-md transition-shadow cursor-pointer">
-                    <div className="flex items-start space-x-3">
-                      <span className="text-2xl">{topic.icon}</span>
-                      <div>
-                        <h3 className="font-medium text-gray-900 dark:text-white">
-                          {topic.title}
-                        </h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                          {topic.description}
-                        </p>
-                      </div>
+                  <Card className="h-full p-4 hover:shadow-md transition-shadow cursor-pointer flex flex-col">
+                    <div className="flex-1">
+                      <h3 className="font-medium text-gray-900 dark:text-white mb-2">
+                        {topic.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                        {topic.description}
+                      </p>
                     </div>
                   </Card>
                 </motion.div>
@@ -252,7 +244,7 @@ Thank you!`;
               For technical support, contact us at{' '}
               <button
                 onClick={handleContactSupport}
-                className="text-green-600 dark:text-green-400 hover:underline"
+                className="text-blue-600 dark:text-blue-400 hover:underline"
               >
                 Priyakaviya2004@gmail.com
               </button>

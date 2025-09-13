@@ -68,7 +68,7 @@ export const Avatar = ({
       <div
         className={`
           w-full h-full items-center justify-center font-medium
-          bg-gradient-to-br from-green-400 to-green-600 text-white
+          bg-gradient-to-br from-blue-400 to-blue-600 text-white
           ${src ? 'hidden' : 'flex'}
         `}
       >
@@ -80,7 +80,7 @@ export const Avatar = ({
         <span
           className={`
             absolute bottom-0 right-0 ${onlineSizes[size]}
-            bg-green-400 border-2 border-white dark:border-gray-800 rounded-full
+            bg-blue-400 border-2 border-white dark:border-gray-800 rounded-full
           `}
         />
       )}
@@ -97,9 +97,9 @@ export const Badge = ({
   ...props 
 }) => {
   const variants = {
-    primary: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
+    primary: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
     secondary: 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300',
-    success: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
+    success: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
     warning: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300',
     danger: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300',
     info: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
@@ -275,7 +275,7 @@ export const Alert = ({
 }) => {
   const variants = {
     info: 'bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-200',
-    success: 'bg-green-50 border-green-200 text-green-800 dark:bg-green-900/20 dark:border-green-800 dark:text-green-200',
+    success: 'bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-200',
     warning: 'bg-yellow-50 border-yellow-200 text-yellow-800 dark:bg-yellow-900/20 dark:border-yellow-800 dark:text-yellow-200',
     danger: 'bg-red-50 border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-800 dark:text-red-200',
   };
@@ -339,9 +339,9 @@ export const Progress = ({
   };
 
   const variants = {
-    primary: 'bg-green-600',
+    primary: 'bg-blue-600',
     secondary: 'bg-gray-600',
-    success: 'bg-green-600',
+    success: 'bg-blue-600',
     warning: 'bg-yellow-600',
     danger: 'bg-red-600',
   };

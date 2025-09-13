@@ -171,7 +171,7 @@ const MessageBubble = ({ message, isOwn, showAvatar = true, previousMessage, nex
           <div className="relative">
             {!imageLoaded && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-200 dark:bg-gray-700 rounded">
-                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-green-500"></div>
+                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
               </div>
             )}
             <div className="relative cursor-pointer" onClick={() => setShowImageModal(true)}>
@@ -214,7 +214,7 @@ const MessageBubble = ({ message, isOwn, showAvatar = true, previousMessage, nex
             <div className="flex space-x-1">
               <button
                 onClick={handleDownloadMedia}
-                className="flex-shrink-0 p-1 text-green-600 hover:text-green-700 hover:bg-green-50 dark:hover:bg-green-900/20 rounded transition-colors"
+                className="flex-shrink-0 p-1 text-blue-600 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded transition-colors"
                 title="Download file"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -240,7 +240,7 @@ const MessageBubble = ({ message, isOwn, showAvatar = true, previousMessage, nex
         return (
           <div className="flex items-center space-x-3 p-3 bg-gray-100 dark:bg-gray-700 rounded-lg max-w-xs">
             <div className="flex-shrink-0">
-              <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+              <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
                 <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clipRule="evenodd" />
                 </svg>
@@ -253,7 +253,7 @@ const MessageBubble = ({ message, isOwn, showAvatar = true, previousMessage, nex
                     const audio = new Audio(message.fileUrl);
                     audio.play().catch(err => console.error('Error playing audio:', err));
                   }}
-                  className="p-1 text-green-600 hover:text-green-700 hover:bg-green-50 dark:hover:bg-green-900/20 rounded-full transition-colors"
+                  className="p-1 text-blue-600 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-full transition-colors"
                   title="Play voice note"
                 >
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -266,7 +266,7 @@ const MessageBubble = ({ message, isOwn, showAvatar = true, previousMessage, nex
                     {[...Array(12)].map((_, i) => (
                       <div
                         key={i}
-                        className="w-1 bg-green-400 rounded-full"
+                        className="w-1 bg-blue-400 rounded-full"
                         style={{
                           height: `${Math.random() * 20 + 10}px`,
                           opacity: 0.7
@@ -282,7 +282,7 @@ const MessageBubble = ({ message, isOwn, showAvatar = true, previousMessage, nex
             </div>
             <button
               onClick={handleDownloadMedia}
-              className="flex-shrink-0 p-1 text-green-600 hover:text-green-700 hover:bg-green-50 dark:hover:bg-green-900/20 rounded transition-colors"
+              className="flex-shrink-0 p-1 text-blue-600 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded transition-colors"
               title="Download voice note"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -319,7 +319,7 @@ const MessageBubble = ({ message, isOwn, showAvatar = true, previousMessage, nex
       ref={messageRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`flex ${isOwn ? 'justify-end' : 'justify-start'} mb-2 group`}
+      className="flex justify-start mb-2 group"
       onMouseEnter={() => setShowActions(true)}
       onMouseLeave={() => setShowActions(false)}
     >
@@ -334,7 +334,7 @@ const MessageBubble = ({ message, isOwn, showAvatar = true, previousMessage, nex
                 className="w-full h-full object-cover"
               />
             ) : (
-              <div className="w-full h-full bg-green-500 flex items-center justify-center">
+              <div className="w-full h-full bg-blue-500 flex items-center justify-center">
                 <span className="text-white text-xs font-medium">
                   {message.senderName?.charAt(0) || 'U'}
                 </span>
@@ -345,7 +345,7 @@ const MessageBubble = ({ message, isOwn, showAvatar = true, previousMessage, nex
       )}
 
       {/* Message bubble */}
-      <div className={`max-w-xs lg:max-w-md ${shouldShowAvatar ? '' : 'ml-10'}`}>
+      <div className={`max-w-[280px] ${shouldShowAvatar ? '' : 'ml-10'}`}>
         {/* Sender name for group chats */}
         {!isOwn && showAvatar && (
           <p className="text-xs text-gray-500 dark:text-gray-400 mb-1 ml-2">
@@ -354,10 +354,22 @@ const MessageBubble = ({ message, isOwn, showAvatar = true, previousMessage, nex
         )}
 
         <div className="relative">
+          {/* Reply indicator */}
+          {message.reply_to && (
+            <div className="mb-2 p-2 bg-gray-50 dark:bg-gray-600 border-l-4 border-blue-500 rounded-r-lg">
+              <div className="text-xs text-gray-600 dark:text-gray-300 font-medium">
+                Replying to {message.reply_to.sender?.full_name || 'User'}
+              </div>
+              <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 truncate">
+                {message.reply_to.content || (message.reply_to.file_url ? 'File attachment' : 'Message')}
+              </div>
+            </div>
+          )}
+          
           <div
             className={`px-4 py-2 rounded-2xl ${
               isOwn
-                ? 'bg-green-500 text-white rounded-br-md'
+                ? 'bg-blue-500 text-white rounded-br-md'
                 : 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-600 rounded-bl-md'
             }`}
           >
@@ -365,7 +377,7 @@ const MessageBubble = ({ message, isOwn, showAvatar = true, previousMessage, nex
 
             {/* Message status and timestamp */}
             <div className={`flex items-center space-x-1 mt-1 text-xs ${
-              isOwn ? 'text-green-100' : 'text-gray-500 dark:text-gray-400'
+              isOwn ? 'text-blue-100' : 'text-gray-500 dark:text-gray-400'
             }`}>
               <span>{formatTime(message.timestamp)}</span>
               {isOwn && (
@@ -419,36 +431,37 @@ const MessageBubble = ({ message, isOwn, showAvatar = true, previousMessage, nex
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
-                className={`absolute top-0 ${isOwn ? 'left-0 -translate-x-full' : 'right-0 translate-x-full'} flex flex-col bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg p-1 z-[60]`}
+                className="absolute top-0 right-0 translate-x-full flex flex-col bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg p-1 z-[9999]"
+                style={{ zIndex: 9999 }}
               >
                 {/* Message actions */}
                 <div className="flex items-center space-x-1 border-b border-gray-200 dark:border-gray-600 pb-1 mb-1">
                   {/* Reply */}
                   <button
                     onClick={handleReplyMessage}
-                    className="p-1 hover:bg-gray-100 dark:hover:bg-gray-600 rounded text-gray-600 dark:text-gray-300"
+                    className="p-1 hover:bg-gray-100 dark:hover:bg-gray-600 rounded text-gray-600 dark:text-gray-300 text-xs"
                     title="Reply"
                   >
-                    ↩️
+                    Reply
                   </button>
                   
                   {/* Forward */}
                   <button
                     onClick={handleForwardMessage}
-                    className="p-1 hover:bg-gray-100 dark:hover:bg-gray-600 rounded text-gray-600 dark:text-gray-300"
+                    className="p-1 hover:bg-gray-100 dark:hover:bg-gray-600 rounded text-gray-600 dark:text-gray-300 text-xs"
                     title="Forward"
                   >
-                    ↪️
+                    Forward
                   </button>
                   
                   {/* Copy */}
                   {message.type === 'text' && (
                     <button
                       onClick={handleCopyMessage}
-                      className={`p-1 hover:bg-gray-100 dark:hover:bg-gray-600 rounded ${copiedMessage === message.id ? 'text-green-600' : 'text-gray-600 dark:text-gray-300'}`}
+                      className={`p-1 hover:bg-gray-100 dark:hover:bg-gray-600 rounded text-xs ${copiedMessage === message.id ? 'text-blue-600' : 'text-gray-600 dark:text-gray-300'}`}
                       title={copiedMessage === message.id ? 'Copied!' : 'Copy'}
                     >
-                      📋
+                      Copy
                     </button>
                   )}
                   
@@ -456,10 +469,10 @@ const MessageBubble = ({ message, isOwn, showAvatar = true, previousMessage, nex
                   {(message.type === 'image' || message.type === 'file') && (
                     <button
                       onClick={handleDownloadMedia}
-                      className="p-1 hover:bg-gray-100 dark:hover:bg-gray-600 rounded text-gray-600 dark:text-gray-300"
+                      className="p-1 hover:bg-gray-100 dark:hover:bg-gray-600 rounded text-gray-600 dark:text-gray-300 text-xs"
                       title="Download"
                     >
-                      💾
+                      Download
                     </button>
                   )}
                   
@@ -467,10 +480,10 @@ const MessageBubble = ({ message, isOwn, showAvatar = true, previousMessage, nex
                   {isOwn && (
                     <button
                       onClick={() => setShowDeleteModal(true)}
-                      className="p-1 hover:bg-red-100 dark:hover:bg-red-900/20 rounded text-red-600"
+                      className="p-1 hover:bg-red-100 dark:hover:bg-red-900/20 rounded text-red-600 text-xs"
                       title="Delete message"
                     >
-                      🗑️
+                      Delete
                     </button>
                   )}
                 </div>
@@ -512,7 +525,7 @@ const MessageBubble = ({ message, isOwn, showAvatar = true, previousMessage, nex
 
       {/* Image Modal */}
       {showImageModal && message.type === 'image' && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[70]" onClick={() => setShowImageModal(false)}>
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[10000]" onClick={() => setShowImageModal(false)}>
           <div className="relative max-w-4xl max-h-4xl p-4">
             <button
               onClick={() => setShowImageModal(false)}

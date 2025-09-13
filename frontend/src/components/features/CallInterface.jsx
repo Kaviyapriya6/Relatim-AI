@@ -145,7 +145,7 @@ const CallInterface = ({ contactId, contactName, contactAvatar, onEndCall }) => 
                 className="w-full h-full object-cover"
               />
             ) : (
-              <div className="w-full h-full bg-green-500 flex items-center justify-center">
+              <div className="w-full h-full bg-blue-500 flex items-center justify-center">
                 <span className="text-white text-sm font-medium">
                   {contactName?.charAt(0) || 'U'}
                 </span>
@@ -159,7 +159,7 @@ const CallInterface = ({ contactId, contactName, contactAvatar, onEndCall }) => 
             </h3>
             <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
               <div className={`w-2 h-2 rounded-full ${
-                callState === 'connected' ? 'bg-green-500' : 
+                callState === 'connected' ? 'bg-blue-500' : 
                 callState === 'connecting' ? 'bg-yellow-500' : 'bg-gray-400'
               }`}></div>
               <span>
@@ -200,7 +200,7 @@ const CallInterface = ({ contactId, contactName, contactAvatar, onEndCall }) => 
           <>
             <Button
               onClick={() => startCall('audio')}
-              className="w-12 h-12 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center"
+              className="w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center"
               title="Start audio call"
             >
               <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">

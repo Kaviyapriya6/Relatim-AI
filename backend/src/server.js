@@ -6,12 +6,11 @@ const helmet = require('helmet');
 const compression = require('compression');
 const morgan = require('morgan');
 const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+require('dotenv').config();
 
 // Import services and utilities
 const db = require('./config/database');
 const SocketService = require('./services/socketService');
-const storageService = require('./services/storageService');
 
 // Import routes
 const authRoutes = require('./routes/auth');
@@ -32,11 +31,7 @@ class WhatsAppAIServer {
     this.server = http.createServer(this.app);
     this.io = socketIo(this.server, {
       cors: {
-        origin: [
-          process.env.FRONTEND_URL || "http://localhost:3000",
-          "https://relatim-ai.vercel.app",
-          "http://localhost:3000"
-        ],
+        origin: process.env.FRONTEND_URL || "http://localhost:3000",
         methods: ["GET", "POST"],
         credentials: true
       },
@@ -58,11 +53,7 @@ class WhatsAppAIServer {
 
     // CORS configuration
     this.app.use(cors({
-      origin: [
-        process.env.FRONTEND_URL || "http://localhost:3000",
-        "https://relatim-ai.vercel.app",
-        "http://localhost:3000"
-      ],
+      origin: process.env.FRONTEND_URL || "http://localhost:3000",
       credentials: true,
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
       allowedHeaders: ['Content-Type', 'Authorization']
@@ -82,8 +73,8 @@ class WhatsAppAIServer {
     this.app.use(express.json({ limit: '10mb' }));
     this.app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-    // Static file serving - removed for production (using S3 storage)
-    // this.app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+    // Static file serving
+    this.app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
     // Rate limiting for API routes
     this.app.use('/api', apiLimiter);
@@ -102,20 +93,6 @@ class WhatsAppAIServer {
         environment: process.env.NODE_ENV,
         version: '1.0.0'
       });
-    });
-
-    // S3 storage health check
-    this.app.get('/api/storage/health', async (req, res) => {
-      try {
-        const result = await storageService.testConnection();
-        res.json(result);
-      } catch (error) {
-        res.status(500).json({
-          success: false,
-          message: 'Storage health check failed',
-          error: error.message
-        });
-      }
     });
 
     // API routes
@@ -284,14 +261,6 @@ class WhatsAppAIServer {
     try {
       // Test database connection
       await db.testConnection();
-      
-      // Test S3 storage connection
-      const storageTest = await storageService.testConnection();
-      if (storageTest.success) {
-        console.log('✅ S3 storage connection successful');
-      } else {
-        console.warn('⚠️ S3 storage connection failed:', storageTest.message);
-      }
       
       // Start server
       this.server.listen(this.port, () => {

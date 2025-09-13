@@ -307,7 +307,7 @@ const ConversationItem = ({ conversation, formatTime, truncateMessage, onNavigat
       whileHover={{ backgroundColor: 'rgba(0, 0, 0, 0.02)' }}
       className={`p-3 rounded-lg cursor-pointer transition-colors ${
         conversation.unreadCount > 0 
-          ? 'bg-green-50 dark:bg-green-900/10 border border-green-100 dark:border-green-900/20' 
+          ? 'bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/20' 
           : 'hover:bg-gray-50 dark:hover:bg-gray-800'
       }`}
       onMouseEnter={() => setIsHovered(true)}
@@ -358,7 +358,7 @@ const ConversationItem = ({ conversation, formatTime, truncateMessage, onNavigat
             <div className="flex items-center space-x-2 ml-2">
               <span className={`text-xs ${
                 conversation.unreadCount > 0 
-                  ? 'text-green-600 dark:text-green-400 font-medium' 
+                  ? 'text-blue-600 dark:text-blue-400 font-medium' 
                   : 'text-gray-500 dark:text-gray-400'
               }`}>
                 {formatTime(conversation.lastMessageTime)}

@@ -1,11 +1,12 @@
 {
   "version": 2,
+  "name": "relatim-ai-chat",
   "builds": [
     {
-      "src": "package.json",
+      "src": "frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "frontend/build"
+        "distDir": "build"
       }
     },
     {
@@ -19,20 +20,16 @@
       "dest": "/backend/index.js"
     },
     {
-      "src": "/health",
-      "dest": "/backend/index.js"
-    },
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
-      "src": "/(.*\\.(ico|png|jpg|jpeg|gif|svg|css|js|json|woff|woff2|ttf|eot))",
-      "dest": "/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/frontend/$1"
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "functions": {
+    "backend/index.js": {
+      "maxDuration": 30
+    }
+  }
 }

@@ -1,8 +1,46 @@
 const multer = require('multer');
-const storageService = require('../services/storageService');
+const path = require('path');
+const fs = require('fs');
 
-// Use memory storage for S3 uploads
-const storage = multer.memoryStorage();
+// Ensure upload directories exist
+const createUploadDirs = () => {
+  const dirs = [
+    'uploads/profiles',
+    'uploads/messages',
+    'uploads/documents'
+  ];
+  
+  dirs.forEach(dir => {
+    const fullPath = path.join(__dirname, '../../', dir);
+    if (!fs.existsSync(fullPath)) {
+      fs.mkdirSync(fullPath, { recursive: true });
+    }
+  });
+};
+
+createUploadDirs();
+
+// Storage configuration
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    let uploadPath = '';
+    
+    if (req.originalUrl.includes('/api/users/profile') || req.route?.path?.includes('/profile')) {
+      uploadPath = path.join(__dirname, '../../uploads/profiles/');
+    } else if (req.originalUrl.includes('/api/messages') || req.route?.path?.includes('/messages')) {
+      uploadPath = path.join(__dirname, '../../uploads/messages/');
+    } else {
+      uploadPath = path.join(__dirname, '../../uploads/documents/');
+    }
+    
+    cb(null, uploadPath);
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const extension = path.extname(file.originalname);
+    cb(null, file.fieldname + '-' + uniqueSuffix + extension);
+  }
+});
 
 // File filter
 const fileFilter = (req, file, cb) => {
@@ -32,71 +70,11 @@ const upload = multer({
   fileFilter: fileFilter
 });
 
-// Profile photo upload middleware
-const uploadProfilePhoto = (req, res, next) => {
-  upload.single('profile_photo')(req, res, async (err) => {
-    if (err) {
-      return handleUploadError(err, req, res, next);
-    }
+// Profile photo upload (single file)
+const uploadProfilePhoto = upload.single('profile_photo');
 
-    if (!req.file) {
-      return next();
-    }
-
-    try {
-      // Upload to S3
-      const uploadResult = await storageService.uploadProfilePhoto(
-        req.file.buffer,
-        req.file.originalname,
-        req.file.mimetype,
-        req.user.id
-      );
-
-      // Attach upload result to request
-      req.uploadResult = uploadResult;
-      next();
-    } catch (error) {
-      console.error('Profile photo upload error:', error);
-      res.status(500).json({
-        success: false,
-        message: 'Failed to upload profile photo'
-      });
-    }
-  });
-};
-
-// Message file upload middleware
-const uploadMessageFile = (req, res, next) => {
-  upload.single('file')(req, res, async (err) => {
-    if (err) {
-      return handleUploadError(err, req, res, next);
-    }
-
-    if (!req.file) {
-      return next();
-    }
-
-    try {
-      // Upload to S3
-      const uploadResult = await storageService.uploadMessageFile(
-        req.file.buffer,
-        req.file.originalname,
-        req.file.mimetype,
-        req.user.id
-      );
-
-      // Attach upload result to request
-      req.uploadResult = uploadResult;
-      next();
-    } catch (error) {
-      console.error('Message file upload error:', error);
-      res.status(500).json({
-        success: false,
-        message: 'Failed to upload file'
-      });
-    }
-  });
-};
+// Message file upload (single file)
+const uploadMessageFile = upload.single('file');
 
 // Error handling middleware for multer
 const handleUploadError = (err, req, res, next) => {

@@ -14,7 +14,7 @@ const FileUpload = ({
   className = '',
   children,
   disabled = false,
-  dragActiveClassName = 'border-green-500 bg-green-50 dark:bg-green-900/20',
+  dragActiveClassName = 'border-blue-500 bg-blue-50 dark:bg-blue-900/20',
   ...props 
 }) => {
   const [isDragActive, setIsDragActive] = useState(false);
@@ -275,7 +275,7 @@ const FileUpload = ({
           <div className="text-center">
             <CloudArrowUpIcon className={`
               mx-auto h-12 w-12 mb-4
-              ${isDragActive ? 'text-green-500' : 'text-gray-400 dark:text-gray-500'}
+              ${isDragActive ? 'text-blue-500' : 'text-gray-400 dark:text-gray-500'}
             `} />
             <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
               {isDragActive 
@@ -338,7 +338,7 @@ const FileUpload = ({
                     {fileData.progress > 0 && fileData.progress < 100 && (
                       <div className="mt-1 w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1">
                         <motion.div
-                          className="bg-green-600 h-1 rounded-full"
+                          className="bg-blue-600 h-1 rounded-full"
                           initial={{ width: 0 }}
                           animate={{ width: `${fileData.progress}%` }}
                         />
@@ -349,7 +349,7 @@ const FileUpload = ({
                   {/* Status */}
                   <div className="flex-shrink-0 ml-3">
                     {fileData.uploaded ? (
-                      <span className="text-green-500">✓</span>
+                      <span className="text-blue-500">✓</span>
                     ) : fileData.progress > 0 ? (
                       <span className="text-xs text-gray-500">{fileData.progress}%</span>
                     ) : (
@@ -376,7 +376,7 @@ const FileUpload = ({
                 onClick={handleUpload}
                 disabled={uploading}
                 className="
-                  mt-3 w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white rounded-lg
+                  mt-3 w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg
                   disabled:opacity-50 disabled:cursor-not-allowed transition-colors
                 "
               >

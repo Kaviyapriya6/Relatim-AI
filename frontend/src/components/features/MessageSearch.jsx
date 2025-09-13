@@ -143,7 +143,7 @@ const MessageSearch = ({ isOpen, onClose, onSearch, results = [], loading = fals
         <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
           {loading ? (
             <div className="flex items-center justify-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-500"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
               <span className="ml-2 text-gray-600 dark:text-gray-400">Searching...</span>
             </div>
           ) : results.length === 0 ? (
@@ -228,7 +228,7 @@ const MessageSearch = ({ isOpen, onClose, onSearch, results = [], loading = fals
                               console.log('Jump to message:', message.id);
                               onClose();
                             }}
-                            className="p-1 text-gray-400 hover:text-green-600 dark:hover:text-green-400"
+                            className="p-1 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
                             title="Go to message"
                           >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
