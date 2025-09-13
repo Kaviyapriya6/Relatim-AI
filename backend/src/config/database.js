@@ -1,6 +1,5 @@
 const { Pool } = require('pg');
-const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../../../.env') });
+// Environment variables will be provided by Vercel's built-in system
 
 const pool = new Pool({
   host: process.env.DB_HOST,
