@@ -1,6 +1,6 @@
-# Relatim AI Chat - Full Stack Application
+# Relatim AI  - Full Stack Application
 
-A modern WhatsApp-style messaging application with AI integration, built with React and Node.js.
+A modern Relatim messaging application with AI integration, built with React and Node.js.
 
 ## 🚀 Quick Start
 
@@ -8,7 +8,7 @@ A modern WhatsApp-style messaging application with AI integration, built with Re
 
 1. **Clone and install dependencies:**
    ```bash
-   cd whatsapp-ai-chat
+   cd relatim-ai
    npm run install:all
    ```
 
@@ -43,7 +43,7 @@ A modern WhatsApp-style messaging application with AI integration, built with Re
    git add .
    git commit -m "Initial commit"
    git branch -M main
-   git remote add origin https://github.com/yourusername/whatsapp-ai-chat.git
+   git remote add origin https://github.com/yourusername/relatim-ai.git
    git push -u origin main
    ```
 
@@ -249,3 +249,4 @@ npm update
 
 
 This project is licensed under the MIT License.
+
